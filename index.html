@@ -1,0 +1,37 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><title>體驗大肌肌的一天｜Demo</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#08070b;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC",sans-serif}body{overflow:hidden}button{font:inherit}
+#app{width:100vw;height:100dvh;min-height:100vh;position:relative;overflow:hidden}.screen{position:absolute;inset:0}
+#start{display:flex;align-items:flex-end;justify-content:center;background:#0b0910}.heroBlur,.heroMain{position:absolute;inset:0;background-repeat:no-repeat;background-position:center}.heroBlur{background-size:cover;filter:blur(20px) brightness(.45);transform:scale(1.08)}.heroMain{background-size:contain;background-position:center 30%;filter:brightness(.83)}#start:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,#09070cf7 0,#09070c55 53%,transparent)}
+.startcard{z-index:3;width:min(92vw,540px);margin:0 14px max(22px,env(safe-area-inset-bottom));padding:21px;border-radius:24px;background:#121018e8;border:1px solid #ffffff26;backdrop-filter:blur(14px)}.k{font-size:10px;letter-spacing:.22em;color:#ffb8d7}.demo{display:inline-block;margin-left:7px;padding:3px 7px;border-radius:999px;background:#ffffff12;color:#ddd;font-size:9px}h1{font-size:34px;line-height:1.08;margin:7px 0 10px}.startcard p{color:#ddd5df;line-height:1.6;font-size:14px}
+.primary{width:100%;border:0;border-radius:999px;padding:14px;background:linear-gradient(90deg,#f1a4c8,#b6a6ff);font-weight:900;color:#17121b}
+#game{display:none;background:#08070b}.visual{position:absolute;inset:0 0 36%;overflow:hidden;background:#111}.blur{position:absolute;inset:-22px;background-size:cover;background-position:center;filter:blur(24px) brightness(.45);transform:scale(1.08)}.cg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center 44%;z-index:1}.visual:after{content:"";position:absolute;z-index:2;inset:0;background:linear-gradient(to bottom,transparent 65%,#09070d8f)}
+.top{position:absolute;z-index:6;top:max(10px,env(safe-area-inset-top));left:10px;right:10px;display:flex;justify-content:space-between;gap:5px}.pill{padding:8px 10px;border-radius:999px;background:#0e0c13c9;border:1px solid #ffffff22;font-size:11px;backdrop-filter:blur(10px)}.stats{display:flex;gap:4px}.stat.bump{animation:bump .45s ease}.stat.glow{box-shadow:0 0 24px #ff9dceaa}@keyframes bump{50%{transform:scale(1.35)}}
+.dialogue{position:absolute;z-index:5;left:0;right:0;bottom:0;height:36%;min-height:300px;padding:13px 13px max(13px,env(safe-area-inset-bottom));background:linear-gradient(180deg,#18141dfb,#08070b);border-top:1px solid #ffffff26;overflow:auto}.place{font-size:11px;color:#bdb4c3}.speaker{font-size:15px;font-weight:900;color:#ffc1dd;margin-top:3px}.line{font-size:18px;line-height:1.43;font-weight:750;margin:5px 0 8px}.q{font-size:12px;color:#ddd3e2;margin-bottom:7px}.choices{display:grid;gap:6px}.choice{display:flex;gap:9px;width:100%;padding:9px 11px;border-radius:12px;border:1px solid #ffffff20;background:#ffffff0d;color:#f8f5f9;text-align:left;line-height:1.3;font-size:13px}.choice:active{transform:scale(.985)}.choice b{color:#ffbad8;min-width:21px}
+#fb{display:none}.result{display:inline-block;padding:5px 9px;border-radius:999px;font-size:10px;font-weight:900;letter-spacing:.1em}.ok{background:#173c30;color:#a7ffd5}.no{background:#47212e;color:#ffc1d1}.reply{font-size:19px;font-weight:800;line-height:1.45;margin:7px 0}.note{padding:9px 10px;border-radius:11px;background:#ffffff0d;color:#c7bdcb;font-size:12px;line-height:1.4}.next{margin-top:9px;padding:12px}
+.flash{animation:flash .48s ease}@keyframes flash{0%,100%{filter:none}45%{filter:brightness(1.35)}}.wrongfx{animation:shake .28s ease}@keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.special{position:absolute;z-index:8;inset:0;display:none;pointer-events:none;align-items:center;justify-content:center;background:radial-gradient(circle,#ffacd94d,transparent 55%);font-size:24px;font-weight:950;text-shadow:0 2px 16px #000}.special.show{display:flex;animation:special 1.1s ease both}@keyframes special{0%{opacity:0;transform:scale(.8)}35%{opacity:1;transform:scale(1.08)}100%{opacity:0;transform:scale(1)}}
+#ending{display:none;align-items:center;justify-content:center;padding:20px;background:radial-gradient(circle at 50% 15%,#512d50,#09080e 58%);text-align:center}.end{width:min(92vw,520px);padding:26px 20px;border-radius:25px;background:#121018e8;border:1px solid #ffffff22}.score{font-size:44px;font-weight:950;color:#ffc4df;margin:12px}.rank{font-size:17px;line-height:1.55}.share{margin-top:10px;background:#ffffff13;color:#fff;border:1px solid #ffffff26}
+.toast{position:fixed;z-index:20;left:50%;bottom:18px;transform:translateX(-50%) translateY(30px);opacity:0;background:#11101ae8;border:1px solid #ffffff26;padding:10px 14px;border-radius:999px;font-size:12px;transition:.25s}.toast.show{opacity:1;transform:translateX(-50%)}
+@media(min-width:700px){.dialogue{height:34%;padding:15px 5vw 18px}.visual{bottom:34%}.choices{grid-template-columns:1fr 1fr;gap:8px 10px}.line{font-size:21px}.choice{padding:11px 12px}}
+
+.choice.pickflash{
+  border-color:#ffd5e8!important;
+  background:#d95796!important;
+  color:#fff!important;
+  box-shadow:0 0 0 3px rgba(255,255,255,.28),0 0 24px rgba(217,87,150,.85)!important;
+  animation:pickflash .55s ease!important;
+}
+.choice.pickflash b{color:#fff!important}
+.choice.notpicked{opacity:.38}
+@keyframes pickflash{
+  0%{transform:scale(1);filter:brightness(1)}
+  35%{transform:scale(1.025);filter:brightness(1.6)}
+  70%{transform:scale(1.01);filter:brightness(.95)}
+  100%{transform:scale(1);filter:brightness(1.25)}
+}
+</style></head><body><div id="app">
+<section id="start" class="screen"><div id="heroBlur" class="heroBlur"></div><div id="heroMain" class="heroMain"></div><div class="startcard"><div class="k">DAJJ VISUAL NOVEL <span class="demo">DEMO</span></div><h1>體驗大肌肌的一天</h1><p>不要相信常識。<br>選出你認為「大肌肌真的會做」的答案。</p><button id="startBtn" class="primary">START</button></div></section>
+<section id="game" class="screen"><div id="visual" class="visual"><div id="blur" class="blur"></div><img id="cg" class="cg"><div id="special" class="special">💗 你懂我欸</div></div><div class="top"><div id="ep" class="pill"></div><div class="stats"><div id="us" class="pill stat">🧠 <span id="u">0</span></div><div id="as" class="pill stat">💗 <span id="a">0</span></div><div class="pill">🎯 <span id="h">0</span>/9</div></div></div><div class="dialogue"><div id="qb"><div id="place" class="place"></div><div class="speaker">大肌肌</div><div id="line" class="line"></div><div id="q" class="q"></div><div id="choices" class="choices"></div></div><div id="fb"><div id="res" class="result"></div><div class="speaker">大肌肌</div><div id="reply" class="reply"></div><div id="note" class="note"></div><button id="next" class="primary next">繼續 →</button></div></div></section>
+<section id="ending" class="screen"><div class="end"><div class="k">DAY COMPLETE</div><h2>今天結束了。</h2><div id="score" class="score"></div><div id="rank" class="rank"></div><p id="summary"></p><button id="share" class="primary share">複製我的結果</button><button class="primary" style="margin-top:9px" onclick="location.reload()">再玩一次</button></div></section></div><div id="toast" class="toast">結果已複製 ✨</div>
+<script>
